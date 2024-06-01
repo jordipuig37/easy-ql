@@ -24,5 +24,8 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements.txt
 
+      - name: Install EasyQL
+        run: pip install -e .
+
       - name: Run Tests
         run: python -B -m pytest
