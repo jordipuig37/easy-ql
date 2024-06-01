@@ -1,0 +1,5 @@
+build
+flake8
+mypy
+pytest
+twine
