@@ -1,0 +1,26 @@
+rule: EasyQL_L001
+
+no_forbidden_col_used:
+  pass_str: |
+    SELECT
+      a,
+      sum(b)
+    FROM tbl
+    GROUP BY a
+    ORDER BY a
+
+no_order_by_used:
+  pass_str: |
+    SELECT
+      a,
+      b,
+      c
+    FROM tbl
+
+forbidden_col_used:
+  fail_str: |
+    SELECT
+      bar,
+      baaz
+    FROM tbl
+    ORDER BY bar, baaz
