@@ -2,4 +2,5 @@ build
 flake8
 mypy
 pytest
+sqlfluff
 twine
