@@ -56,9 +56,10 @@ class Rule_EasyQL_L001(BaseRule):
         for seg in context.segment.segments:
             col_name = seg.raw.lower()
             if col_name in self.forbidden_columns:
+                desc = f"Column `{col_name}` not allowed in ORDER BY."
                 return LintResult(
                     anchor=seg,
-                    description=f"Column `{col_name}` not allowed in ORDER BY.",
+                    description=desc
                 )
 
 
@@ -84,7 +85,8 @@ class Rule_EasyQL_L002(BaseRule):
             if seg.raw.lower() == "on":
                 on_appeared = True
             if seg.raw == "\n" and not on_appeared:
+                desc = "Join and ON keyword should be at the same line."
                 return LintResult(
                     anchor=seg,
-                    description=f"Join and ON keyword should be at the same line.",
+                    description=desc
                 )

@@ -4,6 +4,7 @@ from sqlfluff.core.config import ConfigLoader
 from sqlfluff.core.plugin import hookimpl
 from sqlfluff.core.rules import BaseRule
 
+
 @hookimpl
 def get_rules() -> List[Type[BaseRule]]:
     """Get plugin rules.
@@ -18,7 +19,9 @@ def get_rules() -> List[Type[BaseRule]]:
     is available for the validation steps in the meta class.
     """
     # i.e. we DO recommend importing here:
-    from sqlfluff_easy_ql.rules import Rule_EasyQL_L001, Rule_EasyQL_L002  # noqa: F811
+    from sqlfluff_easy_ql.rules import (
+        Rule_EasyQL_L001, Rule_EasyQL_L002
+    )  # noqa: F811
 
     return [Rule_EasyQL_L001, Rule_EasyQL_L002]
 
