@@ -5,7 +5,7 @@
 [ ] list all the rules we need to add to the plugin
     [x] join and on in the same line
         [ ] disable default checks in the sqlfluff config
-    [ ] do not write 1 = 1 in where clause
+    [x] do not write 1 = 1 in where clause
     [ ] subqueries
     [ ] select * from final at the end of CTEs
     [ ] name of object created in new indented line
