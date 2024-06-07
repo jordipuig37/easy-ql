@@ -6,18 +6,12 @@ This uses the rules API supported from 0.4.0 onwards.
 from sqlfluff.core.rules import (
     BaseRule,
     LintResult,
-    RuleContext,
-    LintResult,
-    LintFix
+    RuleContext
 )
-from sqlfluff.utils.functional import FunctionalContext, sp
-from sqlfluff.core.parser import Sequence
-from sqlfluff.core.rules.doc_decorators import document_fix_compatible
+from sqlfluff.utils.functional import FunctionalContext
 from sqlfluff.core.rules.crawlers import SegmentSeekerCrawler
-from sqlfluff.core.rules.base import BaseRule, LintResult, RuleContext
 
-# These two decorators allow plugins
-# to be displayed in the sqlfluff docs
+
 class Rule_EasyQL_L001(BaseRule):
     """ORDER BY on these columns is forbidden!
 
