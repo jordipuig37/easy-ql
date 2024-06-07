@@ -1,0 +1,53 @@
+rule: EasyQL_L003
+
+no_where_used:
+  pass_str: |
+    SELECT
+      a,
+      sum(b)
+    FROM tbl
+
+where_without_tautology:
+  pass_str: |
+    SELECT
+      a,
+      b,
+      c
+    FROM tbl
+    WHERE
+      a > b
+
+where_1_eq_1_v1:
+  fail_str: |
+    SELECT
+      bar,
+      baaz
+    FROM tbl
+    WHERE 1 = 1
+
+where_1_eq_1_v1:
+  fail_str: |
+    SELECT
+      bar,
+      baaz
+    FROM tbl
+    WHERE 1=1
+      AND bar=1
+
+where_1_eq_1_v2:
+  fail_str: |
+    SELECT
+      bar,
+      baaz
+    FROM tbl
+    WHERE
+      1 = 1 AND bar = 1
+
+where_1_eq_1_v3:
+  fail_str: |
+    SELECT
+      bar,
+      baaz
+    FROM tbl
+    WHERE
+      1 = 1

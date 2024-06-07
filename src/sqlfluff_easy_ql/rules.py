@@ -7,9 +7,14 @@ from sqlfluff.core.rules import (
     BaseRule,
     LintResult,
     RuleContext,
+    LintResult,
+    LintFix
 )
+from sqlfluff.utils.functional import FunctionalContext, sp
+from sqlfluff.core.parser import Sequence
+from sqlfluff.core.rules.doc_decorators import document_fix_compatible
 from sqlfluff.core.rules.crawlers import SegmentSeekerCrawler
-
+from sqlfluff.core.rules.base import BaseRule, LintResult, RuleContext
 
 # These two decorators allow plugins
 # to be displayed in the sqlfluff docs
@@ -74,9 +79,6 @@ class Rule_EasyQL_L002(BaseRule):
     def __init__(self, *args, **kwargs):
         """Overwrite __init__ to set config."""
         super().__init__(*args, **kwargs)
-        with open("test_eval.txt", "a") as f:
-            f.write("logging init L2")
-            f.write("\n---\n")
 
     def _eval(self, context: RuleContext):
         """We should not JOIN .. ON differnet lines."""
@@ -90,3 +92,22 @@ class Rule_EasyQL_L002(BaseRule):
                     anchor=seg,
                     description=desc
                 )
+
+
+class Rule_EasyQL_L003(BaseRule):
+    """Prohibit the use of 'WHERE 1=1' in queries."""
+    groups = ("all",)
+    crawl_behaviour = SegmentSeekerCrawler({"where_clause"})
+    is_fix_compatible = False
+
+    def _eval(self, context: RuleContext):
+        text_segments = (
+            FunctionalContext(context)
+            .segment.children()
+        )
+
+        for idx, seg in enumerate(text_segments):
+            # Look for the pattern '1=1'
+            if "1=1" in seg.raw_upper.replace(" ", ""):
+                return LintResult(anchor=seg)
+        return None
