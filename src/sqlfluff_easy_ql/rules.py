@@ -53,4 +53,3 @@ class Rule_EasyQL_L003(BaseRule):
             if "1=1" in seg.raw_upper.replace(" ", ""):
                 return LintResult(anchor=seg)
         return None
-
