@@ -1,0 +1,56 @@
+rule: EasyQL_LT01
+
+stylish_create:
+  pass_str: |
+    CREATE OR REPLACE TABLE
+        F_SALES
+    (
+        CUSTOMER_ID VARCHAR(32),
+        PRODUCT_ID INTEGER,
+        TOTAL_NET_VALUE NUMBER(12, 2),
+        UNITS_SOLD INTEGER,
+        TST_REC TIMESTAMP_NTZ(9)
+    );
+
+bad_create:
+  fail_str: |
+    CREATE OR REPLACE TABLE F_SALES
+    (
+        CUSTOMER_ID VARCHAR(32),
+        PRODUCT_ID INTEGER,
+        TOTAL_NET_VALUE NUMBER(12, 2),
+        UNITS_SOLD INTEGER,
+        TST_REC TIMESTAMP_NTZ(9)
+    );
+  fix_str: |
+    CREATE OR REPLACE TABLE
+        F_SALES
+    (
+        CUSTOMER_ID VARCHAR(32),
+        PRODUCT_ID INTEGER,
+        TOTAL_NET_VALUE NUMBER(12, 2),
+        UNITS_SOLD INTEGER,
+        TST_REC TIMESTAMP_NTZ(9)
+    );
+
+unindented_create:
+  fail_str: |
+    CREATE OR REPLACE TABLE
+    F_SALES
+    (
+        CUSTOMER_ID VARCHAR(32),
+        PRODUCT_ID INTEGER,
+        TOTAL_NET_VALUE NUMBER(12, 2),
+        UNITS_SOLD INTEGER,
+        TST_REC TIMESTAMP_NTZ(9)
+    );
+  fix_str: |
+    CREATE OR REPLACE TABLE
+        F_SALES
+    (
+        CUSTOMER_ID VARCHAR(32),
+        PRODUCT_ID INTEGER,
+        TOTAL_NET_VALUE NUMBER(12, 2),
+        UNITS_SOLD INTEGER,
+        TST_REC TIMESTAMP_NTZ(9)
+    );
