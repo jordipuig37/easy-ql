@@ -1,4 +1,6 @@
-"""Implementation of Rule LT02."""
+"""Custom implementation of Rule LT02 to allow indents and new lines after
+create statements.
+"""
 
 from typing import List
 
@@ -9,6 +11,8 @@ from sqlfluff.utils.reflow.sequence import ReflowSequence
 
 class Rule_EasyQL_LT02(BaseRule):
     """Incorrect Indentation.
+
+    This is a modified version of the core sqlfluff rule LT02.
 
     **Anti-pattern**
 
@@ -52,7 +56,9 @@ class Rule_EasyQL_LT02(BaseRule):
     _adjust_anchors = True
 
     def handle_create_layout(self) -> List[LintResult]:
-        return list()  # return an empty list
+        # return an empty list because the indentation in create statements
+        # works differently
+        return list()
 
     def _eval(self, context: RuleContext) -> List[LintResult]:
         """Indentation not consistent with previous lines.

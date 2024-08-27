@@ -1,5 +1,5 @@
 [sqlfluff]
-dialect = snowflake
+exclude_rules = LT02
 
 [sqlfluff:layout:type:binary_operator]
 line_position = trailing

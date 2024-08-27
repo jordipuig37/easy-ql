@@ -20,12 +20,14 @@ def get_rules() -> List[Type[BaseRule]]:
     """
     # i.e. we DO recommend importing here:
     from sqlfluff_easy_ql.rules import (
-        Rule_EasyQL_L001,
         Rule_EasyQL_L002,
         Rule_EasyQL_L003
     )  # noqa: F811
+    from sqlfluff_easy_ql.LT02 import Rule_EasyQL_LT02
+    from sqlfluff_easy_ql.LT01 import Rule_EasyQL_LT01
 
-    return [Rule_EasyQL_L001, Rule_EasyQL_L002, Rule_EasyQL_L003]
+    return [Rule_EasyQL_LT01, Rule_EasyQL_LT02,
+            Rule_EasyQL_L002, Rule_EasyQL_L003]
 
 
 @hookimpl

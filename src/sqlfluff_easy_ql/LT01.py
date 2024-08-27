@@ -7,7 +7,7 @@ from sqlfluff.core.rules import BaseRule, LintFix, LintResult, RuleContext
 from sqlfluff.core.rules.crawlers import SegmentSeekerCrawler
 
 
-class Rule_EasyQL_LT001(BaseRule):
+class Rule_EasyQL_LT01(BaseRule):
     """The name of the objects created in CREATE statements should be indented.
     """
     groups = ("all",)
@@ -20,6 +20,26 @@ class Rule_EasyQL_LT001(BaseRule):
         "create_procedure_statement"
     })
     is_fix_compatible = True
+
+    def _aux_fix(self, segments, object_name_segment, object_name_idx) -> List[LintFix]:
+        """Applies the fix logic for the different possible cases."""
+        fix_segments = list()
+
+        # check whether there is a newline
+        if segments[object_name_idx-2].type != "newline" and \
+                segments[object_name_idx-1].type != "newline":
+            fix_segments.append(NewlineSegment())
+        # check the indentation
+        if segments[object_name_idx-1].type != "whitespace" or \
+                len(segments[object_name_idx-1].raw) != 4:
+            fix_segments.append(WhitespaceSegment("    "))
+
+        fix = LintFix.create_before(
+            object_name_segment,
+            fix_segments
+        )
+
+        return [fix]
 
     def _eval(self, context: RuleContext) -> List[LintResult]:
         # skip entire part of CREATE [OR REPLACE]
@@ -36,17 +56,10 @@ class Rule_EasyQL_LT001(BaseRule):
                 len(segments[table_name_idx-1].raw) == 4:
             return None
         else:  # apply fixes and return lint result
-            fixes_to_apply = list()
-            # [ ] (wip) make the logic robust and do not leave trailing spaces
-            #   as a result of the fix
-            fix = LintFix.create_before(
-                    table_name_segment,
-                    [NewlineSegment(), WhitespaceSegment("    ")]
-            )
-            fixes_to_apply.append(fix)
+            fixes_to_apply = self._aux_fix(segments, table_name_segment, table_name_idx)
 
             return LintResult(
                     anchor=table_name_segment,
                     fixes=fixes_to_apply,
-                    description="Stylish create"
+                    description="The name of the created object must be in a new line and indented."
                 )
