@@ -6,9 +6,9 @@
     [x] join and on in the same line
         [ ] disable default checks in the sqlfluff config
     [x] do not write 1 = 1 in where clause
+    [x] name of object created in new indented line
     [ ] subqueries
     [ ] select * from final at the end of CTEs
-    [ ] name of object created in new indented line
     [ ] the last ; should be in a separate line, when the last line of the statement is indented
     ...
 
