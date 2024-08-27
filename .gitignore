@@ -1,7 +1,6 @@
 # Ignore IDE files
 .vscode
 .idea
-/.sqlfluff
 **/.DS_Store
 
 # Ignore Python cache and prebuilt things
@@ -13,6 +12,7 @@ build
 _build
 dist
 .pytest_cache
+.mypy_cache
 
 # Ignore the Environment
 env

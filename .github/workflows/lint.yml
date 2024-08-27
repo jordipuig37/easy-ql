@@ -2,9 +2,9 @@ name: Lint
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "dev" ]
 
   workflow_dispatch:
 
@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: 3.12
-          cahce: pip
 
       - name: Install dependencies
         run: pip install -r requirements.txt

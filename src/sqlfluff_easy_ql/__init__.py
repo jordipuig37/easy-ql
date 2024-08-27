@@ -20,10 +20,14 @@ def get_rules() -> List[Type[BaseRule]]:
     """
     # i.e. we DO recommend importing here:
     from sqlfluff_easy_ql.rules import (
-        Rule_EasyQL_L001, Rule_EasyQL_L002
+        Rule_EasyQL_L002,
+        Rule_EasyQL_L003
     )  # noqa: F811
+    from sqlfluff_easy_ql.LT02 import Rule_EasyQL_LT02
+    from sqlfluff_easy_ql.LT01 import Rule_EasyQL_LT01
 
-    return [Rule_EasyQL_L001, Rule_EasyQL_L002]
+    return [Rule_EasyQL_LT01, Rule_EasyQL_LT02,
+            Rule_EasyQL_L002, Rule_EasyQL_L003]
 
 
 @hookimpl
@@ -40,5 +44,4 @@ def get_configs_info() -> dict:
     """Get rule config validations and descriptions."""
     return {
         "forbidden_columns": {"definition": "A list of column to forbid"},
-        "join_on_same_line": {"definition": "Whether this rule is on or not"}
     }
