@@ -1,4 +1,4 @@
-"""Implementation of Rule CV06."""
+"""Implementation of custom rule for indentation in CREATE statements."""
 
 from typing import List
 
@@ -44,6 +44,11 @@ class Rule_EasyQL_LT01(BaseRule):
             object_name_segment,
             fix_segments
         )
+
+        if segments[object_name_idx-1].type == "whitespace" and \
+                len(segments[object_name_idx-1].raw) == 1:
+            fix2 = LintFix.delete(segments[object_name_idx-1])
+            return [fix, fix2]
 
         return [fix]
 
