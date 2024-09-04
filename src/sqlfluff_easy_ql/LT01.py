@@ -58,7 +58,10 @@ class Rule_EasyQL_LT01(BaseRule):
         obj_reference = context.segment.type.split("_")[1] + "_reference"
         table_name_idx, table_name_segment = next(
             ((idx, s) for idx, s in enumerate(segments)
-                if s.type == obj_reference or s.type == "function_name")
+                if s.type == obj_reference or \
+                    s.type == "table_reference" or \
+                    s.type == "object_reference" or \
+                    s.type == "function_name"),
         )
 
         # assert that there is a newline and 4 spaces before the name
