@@ -33,3 +33,6 @@ where = ["src"]
 
 [project.entry-points."sqlfluff"]
 sqlfluff_easy_ql = "sqlfluff_easy_ql"
+
+[project.scripts]
+easy-ql = "sqlfluff_easy_ql.__main__:main"
