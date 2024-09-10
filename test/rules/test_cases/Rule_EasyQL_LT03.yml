@@ -1,4 +1,4 @@
-rule: EasyQL_L002
+rule: EasyQL_LT03
 
 no_join_used:
   pass_str: |
