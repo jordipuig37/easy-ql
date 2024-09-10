@@ -22,12 +22,14 @@ def get_rules() -> List[Type[BaseRule]]:
     from sqlfluff_easy_ql.LT01 import Rule_EasyQL_LT01
     from sqlfluff_easy_ql.LT02 import Rule_EasyQL_LT02
     from sqlfluff_easy_ql.LT03 import Rule_EasyQL_LT03
+    from sqlfluff_easy_ql.LT04 import Rule_EasyQL_LT04
     from sqlfluff_easy_ql.CV01 import Rule_EasyQL_CV01
 
     return [
         Rule_EasyQL_LT01,
         Rule_EasyQL_LT02,
         Rule_EasyQL_LT03,
+        Rule_EasyQL_LT04,
         Rule_EasyQL_CV01
     ]
 

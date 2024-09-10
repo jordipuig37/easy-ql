@@ -1,0 +1,49 @@
+rule: EasyQL_LT04
+
+no_join_used:
+  pass_str: |
+    SELECT
+          a,
+      sum(b)
+    FROM tbl
+    WHERE a = c
+    GROUP BY a
+    ORDER BY a
+
+proper_join_style:
+  pass_str: |
+    SELECT
+        a,
+        b,
+        c
+    FROM tbl
+    JOIN tbl2 ON
+        tbl.a = tb2.a
+
+join_on_single_line:
+  fail_str: |
+    SELECT
+        bar,
+        baaz
+    FROM tbl
+    JOIN tbl2 ON tbl1.bar = tbl2.bar
+
+condition_not_indented:
+  fail_str: |
+    SELECT
+        bar,
+        baaz
+    FROM tbl
+    JOIN tbl2 ON
+    tbl1.bar = tbl2.bar
+
+muliple_join_correct:
+  pass_str: |
+    SELECT
+        bar,
+        baaz
+    FROM tbl
+    JOIN tbl2 ON
+        tbl1.bar = tbl2.bar
+    JOIN tb3 ON
+        tbl1.foo = tbl3.fu
