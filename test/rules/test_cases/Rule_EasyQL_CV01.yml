@@ -1,4 +1,4 @@
-rule: EasyQL_L003
+rule: EasyQL_CV01
 
 no_where_used:
   pass_str: |

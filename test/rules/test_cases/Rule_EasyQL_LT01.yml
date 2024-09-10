@@ -54,3 +54,15 @@ unindented_create:
         UNITS_SOLD INTEGER,
         TST_REC TIMESTAMP_NTZ(9)
     );
+
+stylish_create_view:
+  pass_str: |
+    CREATE VIEW
+        V_REP_M_MATERIALS
+    AS
+    SELECT
+        MATERIAL_NUMBER,
+        MATERIAL_DESCRIPTION,
+        PRODUCT_HIERARCHY,
+        HIERARCHY_DESCRIPTION
+    FROM M_MATERIALS;
