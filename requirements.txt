@@ -4,3 +4,5 @@ mypy
 pytest
 sqlfluff
 twine
+tqdm
+types-tqdm
