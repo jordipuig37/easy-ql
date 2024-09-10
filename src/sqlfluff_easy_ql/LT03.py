@@ -1,10 +1,6 @@
 """Implementation of custom rule for indentation in JOIN ... ON clauses."""
 
-from typing import List
-
-from sqlfluff.core.parser import NewlineSegment, WhitespaceSegment
-from sqlfluff.core.rules import BaseRule, LintFix, LintResult, RuleContext
-from sqlfluff.core.parser.segments.base import BaseSegment
+from sqlfluff.core.rules import BaseRule, LintResult, RuleContext
 from sqlfluff.core.rules.crawlers import SegmentSeekerCrawler
 
 

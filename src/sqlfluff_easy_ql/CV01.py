@@ -1,4 +1,4 @@
-"""EasyQL convention rule 
+"""EasyQL convention rule
 """
 
 from sqlfluff.core.rules import (
